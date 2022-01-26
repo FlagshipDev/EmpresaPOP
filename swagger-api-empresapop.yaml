@@ -1,0 +1,175 @@
+openapi: 3.0.1
+info:
+  title: Empresa POP
+  description: Archivo de especificación del servidor de Empresa POP.
+  version: 1.0.0
+servers:
+- url: http://rest2daeva.easybyte.club/v/1
+tags:
+- name: Employee
+  description: Operations about employees
+paths:
+  /employees:
+    get:
+      summary: Get all data from employees
+      parameters:
+      - name: token
+        in: header
+        description: App auth token (Os explicaré más adelante de como hacerlo)
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Succesfuly operation
+          content: 
+            application/json:
+              schema:
+                $ref: '##/components/schemas/Employee'
+              example:
+                - empno: 7369
+                  ename: SMITH
+                  job: CLERK
+                  mgr: 7902
+                  hiredate: 17/12/1980
+                  sal: 800
+                  comm: null
+                  deptno: 20
+                - empno: 7499
+                  ename: ALLEN
+                  job: SALESMAN
+                  mgr: 7698 
+                  hiredate: 20/02/1981
+                  sal: 1600
+                  comm: 300
+                  deptno: 30
+        401:
+          description: "Request failed cause there is no token on headers"
+        403:
+          description: "Request failed cause token is invalid"
+  /departments:
+    get:
+      summary: Get all data from departments
+      parameters:
+      - name: token
+        in: header
+        description: App auth token (Os explicaré más adelante de como hacerlo)
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Succesfuly operation
+          content: 
+            application/json:
+              schema:
+                $ref: '##/components/schemas/#/components/schemas/Department'
+              example:
+                - deptno: 10
+                  dname: RESEARCH
+                  loc: NEW YORK
+                - deptno: 20
+                  dname: SALES
+                  loc: CHICAGO
+        401:
+          description: Request failed cause there is no token on headers
+        403:
+          description: Request failed cause token is invalid
+  /employee:
+    post:
+      summary: Post a new employee
+      parameters:
+        - name: token
+          in: header
+          description: App auth token (Os explicaré más adelante de como hacerlo)
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Data of the new employee
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '##/components/schemas/Employee'
+            example:
+              empno: 7839
+              ename: KING
+              job: PRESIDENT
+              mgr: NULL
+              hiredate: 17/11/1981
+              sal: 5000
+              comm: NULL
+              deptno: 10
+      responses:
+        201:
+          description: Employee succesfuly created.
+        400:
+          description: Request failed cause some parameter is not right (ID, in this case).
+        401:
+          description: Request failed cause there is no token on headers
+        403:
+          description: Request failed cause token is invalid
+  /employee/{id}:
+    delete:
+      summary: Post a new employee
+      parameters:
+        - name: token
+          in: header
+          description: App auth token (Os explicaré más adelante de como hacerlo)
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: Employee ID (must not exist on database, unique) -> Necesitamos definir un patrón único de creación de IDs
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Employee succesfuly deleted.
+        400:
+          description: Request failed cause some parameter is not right (ID, in this case).
+        401:
+          description: Request failed cause there is no token on headers
+        403:
+          description: Request failed cause token is invalid
+
+components:
+  schemas:
+    Employee:
+      type: object
+      properties:
+        empno:
+          type: integer
+        ename:
+          type: string
+        job:
+          type: string
+        mgr:
+          type: integer
+        hiredate:
+          type: string
+          format: date
+        sal:
+          type: number
+          format: float
+        comm:
+          type: number
+          format: float
+        deptno:
+          type: integer
+      xml:
+        name: Employee
+    Department:
+      type: object
+      properties:
+        deptno:
+          type: integer
+        dname:
+          type: string
+        loc:
+          type: string
+      xml:
+        name: Department
