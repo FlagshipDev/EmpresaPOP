@@ -14,12 +14,13 @@
                 <!-- Build an executable JAR -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.2</version>
                 <configuration>
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.afundacion.application.App</mainClass>
+                            <mainClass>application.App</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
