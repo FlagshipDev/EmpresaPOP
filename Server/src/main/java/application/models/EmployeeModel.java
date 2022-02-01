@@ -27,7 +27,7 @@ public class EmployeeModel {
     private double sal;
 
     @Column(name="comm", nullable = true)
-    private double comm;
+    private String comm;
 
     @Column(name="deptnp")
     private double deptno;
@@ -80,11 +80,11 @@ public class EmployeeModel {
         this.sal = sal;
     }
 
-    public double getComm() {
+    public String getComm() {
         return comm;
     }
 
-    public void setComm(double comm) {
+    public void setComm(String comm) {
         this.comm = comm;
     }
 
