@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="dept")
-public class DeptModel {
+public class DepartmentModel {
     @Id
     @Column(name="deptno", nullable = false)
     private int deptNo;
