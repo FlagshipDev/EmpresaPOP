@@ -26,7 +26,7 @@ public class EmployeeModel {
     @Column(name="sal")
     private double sal;
 
-    @Column(name="comm")
+    @Column(name="comm", nullable = true)
     private double comm;
 
     @Column(name="deptnp")
