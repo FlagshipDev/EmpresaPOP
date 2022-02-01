@@ -38,12 +38,3 @@ jobs:
       with:
         name: server-artifact
         path: staging
-  publish-package:
-    runs-on: ubuntu-latest 
-      permissions: 
-        contents: read
-         packages: write 
-      - name: Publish package
-        run: mvn --batch-mode deploy -Dmaven.test.skip
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
