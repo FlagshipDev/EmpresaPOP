@@ -29,7 +29,6 @@ public class EmployeeModel {
     @Column(name="comm")
     private double comm;
 
-    @OneToMany(mappedBy="dept")
     @Column(name="deptnp")
     private double deptno;
 
