@@ -1,7 +1,7 @@
 package application.repository;
 
-import application.models.DeptModel;
+import application.models.DepartmentModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface DepartmentRepository extends JpaRepository<DeptModel, String> {
+public interface DepartmentRepository extends JpaRepository<DepartmentModel, String> {
 }
