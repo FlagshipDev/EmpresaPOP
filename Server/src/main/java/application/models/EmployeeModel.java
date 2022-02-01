@@ -9,7 +9,7 @@ import java.util.Date;
 public class EmployeeModel {
     @Id
     @Column(name="empno", nullable = false)
-    private int empNo;
+    private Integer empNo;
 
     @Column(name="ename", length = 10)
     private String empName;
@@ -18,25 +18,25 @@ public class EmployeeModel {
     private String job;
 
     @Column(name="mgr")
-    private int mgr;
+    private Integer mgr;
 
     @Column(name="hiredate")
     private Date hireDate;
 
     @Column(name="sal")
-    private double sal;
+    private Double sal;
 
     @Column(name="comm", nullable = true)
-    private String comm;
+    private Double comm;
 
     @Column(name="deptnp")
-    private double deptno;
+    private Double deptno;
 
-    public int getEmpNo() {
+    public Integer getEmpNo() {
         return empNo;
     }
 
-    public void setEmpNo(int empNo) {
+    public void setEmpNo(Integer empNo) {
         this.empNo = empNo;
     }
 
@@ -60,7 +60,7 @@ public class EmployeeModel {
         return mgr;
     }
 
-    public void setMgr(int mgr) {
+    public void setMgr(Integer mgr) {
         this.mgr = mgr;
     }
 
@@ -76,15 +76,15 @@ public class EmployeeModel {
         return sal;
     }
 
-    public void setSal(double sal) {
+    public void setSal(Double sal) {
         this.sal = sal;
     }
 
-    public String getComm() {
+    public Double getComm() {
         return comm;
     }
 
-    public void setComm(String comm) {
+    public void setComm(Double comm) {
         this.comm = comm;
     }
 
@@ -92,7 +92,7 @@ public class EmployeeModel {
         return deptno;
     }
 
-    public void setDeptno(double deptno) {
+    public void setDeptno(Double deptno) {
         this.deptno = deptno;
     }
 }

@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class DepartmentModel {
     @Id
     @Column(name="deptno", nullable = false)
-    private int deptNo;
+    private Integer deptNo;
 
     @Column(name="dname", length = 14)
     private String dName;
@@ -18,11 +18,11 @@ public class DepartmentModel {
     @Column(name="loc",length = 13)
     private String loc;
 
-    public int getDeptNo() {
+    public Integer getDeptNo() {
         return deptNo;
     }
 
-    public void setDeptNo(int deptNo) {
+    public void setDeptNo(Integer deptNo) {
         this.deptNo = deptNo;
     }
 
