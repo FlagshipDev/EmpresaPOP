@@ -1,6 +1,6 @@
 package api;
 
-import dto.EmployeeDTO;
+import dtos.Employee;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -11,12 +11,12 @@ public class RestClient {
 
     private final RestClientHelper api = new RestClientHelper();
 
-    public ArrayList<EmployeeDTO> getEmployees() {
+    public ArrayList<Employee> getEmployees() {
         JSONArray jsonResponse = api.getResponse("/employees");
-        ArrayList<EmployeeDTO> employees = new ArrayList();
+        ArrayList<Employee> employees = new ArrayList();
         for (int indice = 0; indice < jsonResponse.length(); indice++) {
             try {
-                employees.add(new EmployeeDTO(jsonResponse.getJSONObject(indice)));
+                employees.add(new Employee(jsonResponse.getJSONObject(indice)));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -24,7 +24,7 @@ public class RestClient {
         return employees;
     }
 
-    public ArrayList<EmployeeDTO> postEmployee(EmployeeDTO dto) {
+    public ArrayList<Employee> postEmployee(Employee dto) {
         // crear el dto del empleado
         JSONObject body = new JSONObject();
         //body.put("empno", dto.getEmpno());
@@ -37,8 +37,8 @@ public class RestClient {
         return getEmployees();
     }
 
-    public ArrayList<EmployeeDTO> deleteEmployee(EmployeeDTO dto) {
-        if(api.deleteRequest("/employee/"+dto.getEmpno)){
+    public ArrayList<Employee> deleteEmployee(Employee dto) {
+        if(api.deleteRequest("/employee/"+dto.getEmpno())){
             System.out.println("Todo ok");
         } else {
             System.out.println("Algo ha fallado");
