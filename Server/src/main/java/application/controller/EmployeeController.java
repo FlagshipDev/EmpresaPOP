@@ -1,6 +1,5 @@
 package application.controller;
 
-import application.models.DepartmentModel;
 import application.models.EmployeeModel;
 import application.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;

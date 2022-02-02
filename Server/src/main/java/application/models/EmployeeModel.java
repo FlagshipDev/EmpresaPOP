@@ -1,11 +1,15 @@
 package application.models;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import org.hibernate.type.IntegerType;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name="emp")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class EmployeeModel {
     @Id
     @Column(name="empno", nullable = false)
@@ -26,10 +30,10 @@ public class EmployeeModel {
     @Column(name="sal")
     private Double sal;
 
-    @Column(name="comm", nullable = true)
+    @Column(name="comm")
     private Double comm;
 
-    @Column(name="deptnp")
+    @Column(name="deptno", nullable = false)
     private Double deptno;
 
     public Integer getEmpNo() {
@@ -56,7 +60,7 @@ public class EmployeeModel {
         this.job = job;
     }
 
-    public int getMgr() {
+    public Integer getMgr() {
         return mgr;
     }
 

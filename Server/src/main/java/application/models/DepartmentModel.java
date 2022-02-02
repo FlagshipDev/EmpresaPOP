@@ -1,5 +1,8 @@
 package application.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import org.hibernate.type.IntegerType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
