@@ -25,8 +25,8 @@ public class RestClient {
         return employees;
     }
 
-    public ArrayList<Department> getDepartment() {
-        JSONArray jsonResponse = api.getResponse("/department");
+    public ArrayList<Department> getDepartments() {
+        JSONArray jsonResponse = api.getResponse("/departments");
         ArrayList<Department> department = new ArrayList();
         for (int indice = 0; indice < jsonResponse.length(); indice++) {
             try {
