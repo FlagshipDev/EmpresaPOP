@@ -1,5 +1,6 @@
 package api;
 
+import dtos.Department;
 import dtos.Employee;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,6 +25,19 @@ public class RestClient {
         return employees;
     }
 
+    public ArrayList<Department> getDepartments() {
+        JSONArray jsonResponse = api.getResponse("/departments");
+        ArrayList<Department> department = new ArrayList();
+        for (int indice = 0; indice < jsonResponse.length(); indice++) {
+            try {
+                department.add(new Department(jsonResponse.getJSONObject(indice)));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return department;
+    }
+
     public ArrayList<Employee> postEmployee(Employee dto) {
         // crear el dto del empleado
         JSONObject body = new JSONObject();
@@ -45,4 +59,6 @@ public class RestClient {
         }
         return getEmployees();
     }
+
+
 }
