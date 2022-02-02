@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MainController {
 
-    @GetMapping("/api")
+    @GetMapping("/")
     public String greetings() {
         return "Empresa POP -  API Running";
     }
