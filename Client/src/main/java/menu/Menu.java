@@ -1,13 +1,19 @@
 package menu;
 
+import api.RestClient;
+import dtos.Employee;
+import org.json.JSONObject;
+
 import java.util.Scanner;
 
 public class Menu {
 
+    private RestClient api;
     private Scanner scn;
     private int option;
 
     public Menu() {
+        this.api = new RestClient();
         this.scn = new Scanner(System.in);
         this.option = 12;
     }
@@ -36,7 +42,37 @@ public class Menu {
         System.out.println("\t5.- Salir");
     }
 
-    private void option1() {}
+    private void option1() {
+        System.out.print("Numero de empleado: ");
+        int empno = scn.nextInt();
+        System.out.print("Nombre del empleado: ");
+        String ename = scn.next();
+        System.out.print("Trabajo del empleado: ");
+        String job = scn.next();
+        System.out.print("Mgr del empleado: ");
+        Integer mgr = scn.nextInt();
+        System.out.print("Fecha en la que el empleado fue contratado: ");
+        String hiredate = scn.next();
+        System.out.print("Salario del empleado: ");
+        Integer sal = scn.nextInt();
+        System.out.print("Comm del empleado: ");
+        Integer comm = scn.nextInt();
+        System.out.print("Numero de departamento del empleado: ");
+        Integer deptno = scn.nextInt();
+
+        JSONObject jsonEmployee = new JSONObject();
+        jsonEmployee.put("empno", empno);
+        jsonEmployee.put("ename", ename);
+        jsonEmployee.put("job", job);
+        jsonEmployee.put("mgr", mgr);
+        jsonEmployee.put("hiredate", hiredate);
+        jsonEmployee.put("sal", sal);
+        jsonEmployee.put("comm", comm);
+        jsonEmployee.put("deptno", deptno);
+
+        Employee newEmployee = new Employee(jsonEmployee);
+        api.postEmployee(newEmployee);
+    }
 
     private void option2() {}
 

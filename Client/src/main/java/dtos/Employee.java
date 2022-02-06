@@ -11,7 +11,7 @@ public class Employee {
     private int empno;
     private String ename;
     private String job;
-    private int mgr;
+    private Integer mgr;
     private String hiredate;
     private int sal;
     private Integer comm;
@@ -29,7 +29,7 @@ public class Employee {
         this.mgr = json.getInt("mgr");
         this.hiredate = json.getString("hiredate");
         this.sal = json.getInt("sal");
-        this.comm = (Integer) json.get("comm");
+        this.comm = json.getInt("comm");
         this.deptno = json.getInt("deptno");
     }
 

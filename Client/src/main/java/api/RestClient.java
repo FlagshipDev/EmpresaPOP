@@ -38,26 +38,19 @@ public class RestClient {
         return department;
     }
 
-    public ArrayList<Employee> postEmployee(Employee dto) {
-        // crear el dto del empleado
+    public void postEmployee(Employee dto) {
         JSONObject body = new JSONObject();
-        //body.put("empno", dto.getEmpno());
-
-        if(api.postRequest("/employee", body)){
-            System.out.println("Todo correcto");
-        } else {
-            System.out.println("algo ha fallado");
-        }
-        return getEmployees();
+        body.put("body", dto);
+        String message =  api.postRequest("/employee", body) ? "Todo correcto" : "algo ha fallado";
+        System.out.println(message);
     }
 
-    public ArrayList<Employee> deleteEmployee(Employee dto) {
+    public void deleteEmployee(Employee dto) {
         if(api.deleteRequest("/employee/"+dto.getEmpno())){
             System.out.println("Todo ok");
         } else {
             System.out.println("Algo ha fallado");
         }
-        return getEmployees();
     }
 
 
