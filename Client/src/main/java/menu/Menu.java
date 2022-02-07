@@ -1,82 +1,86 @@
 package menu;
 
-import api.RestClient;
-import dtos.Employee;
-import org.json.JSONObject;
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.gui2.*;
+import com.googlecode.lanterna.gui2.dialogs.MessageDialog;
+import com.googlecode.lanterna.gui2.dialogs.MessageDialogButton;
+import com.googlecode.lanterna.screen.Screen;
 
-import java.util.Scanner;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.TimeZone;
 
 public class Menu {
 
-    private RestClient api;
-    private Scanner scn;
-    private int option;
+    private DefaultTerminalFactory terminalFactory;
+    private Screen screen;
+    private WindowBasedTextGUI textGUI;
+    private Window window;
+    private Panel contentPanel;
+    private GridLayout gridLayout;
 
     public Menu() {
-        this.api = new RestClient();
-        this.scn = new Scanner(System.in);
-        this.option = 12;
+        try {
+            this.terminalFactory = new DefaultTerminalFactory();
+            this.screen = terminalFactory.createScreen();
+            this.textGUI = new MultiWindowTextGUI(screen);
+            this.window = new BasicWindow("Menu options");
+            this.contentPanel = new Panel(new GridLayout(2));
+            this.gridLayout = (GridLayout) contentPanel.getLayoutManager();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void launch() {
-        while(this.option != 5) {
+        try {
+            screen.startScreen();
             showMenu();
-            System.out.print("\tEscoge una opcion: ");
-            option = scn.nextInt();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-            switch (option) {
-                case 1: option1(); break;
-                case 2: option2(); break;
-                case 3: option3(); break;
-                case 4: option4(); break;
+    }
+
+    private void showMenu() {
+        try {
+            contentPanel.addComponent(
+                    new EmptySpace()
+                            .setLayoutData(
+                                    GridLayout.createHorizontallyFilledLayoutData(2)));
+            contentPanel.addComponent(new Button("Insertar empleado", () -> insertNewEmployee()));
+            contentPanel.addComponent(new Button("Borrar empleado", () -> deleteEmployee()));
+            contentPanel.addComponent(new Button("Visualizar todos los empleados", () -> displayAllEmployees()));
+            contentPanel.addComponent(new Button("Visualizar todos los departamentos", () -> displayAllDepartments()));
+            contentPanel.addComponent(new Button("Salir", window::close));
+
+            window.setComponent(contentPanel);
+            textGUI.addWindowAndWait(window);
+
+        } finally {
+            if (screen != null) {
+                try {
+                    screen.stopScreen();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
 
-    private void showMenu() {
-        System.out.println("Opciones disponibles:");
-        System.out.println("\t1.- Insertar empleado");
-        System.out.println("\t2.- Borrar empleado");
-        System.out.println("\t3.- Visualizar todos los empleados");
-        System.out.println("\t4.- Visualizar todos los departamentos");
-        System.out.println("\t5.- Salir");
+    private void insertNewEmployee() {
+        MessageDialog.showMessageDialog(textGUI, "MessageBox", "This is a message box", MessageDialogButton.OK);
+
     }
 
-    private void option1() {
-        System.out.print("Numero de empleado: ");
-        int empno = scn.nextInt();
-        System.out.print("Nombre del empleado: ");
-        String ename = scn.next();
-        System.out.print("Trabajo del empleado: ");
-        String job = scn.next();
-        System.out.print("Mgr del empleado: ");
-        Integer mgr = scn.nextInt();
-        System.out.print("Fecha en la que el empleado fue contratado: ");
-        String hiredate = scn.next();
-        System.out.print("Salario del empleado: ");
-        Integer sal = scn.nextInt();
-        System.out.print("Comm del empleado: ");
-        Integer comm = scn.nextInt();
-        System.out.print("Numero de departamento del empleado: ");
-        Integer deptno = scn.nextInt();
+    private void deleteEmployee() {}
 
-        JSONObject jsonEmployee = new JSONObject();
-        jsonEmployee.put("empno", empno);
-        jsonEmployee.put("ename", ename);
-        jsonEmployee.put("job", job);
-        jsonEmployee.put("mgr", mgr);
-        jsonEmployee.put("hiredate", hiredate);
-        jsonEmployee.put("sal", sal);
-        jsonEmployee.put("comm", comm);
-        jsonEmployee.put("deptno", deptno);
+    private void displayAllEmployees() {}
 
-        Employee newEmployee = new Employee(jsonEmployee);
-        api.postEmployee(newEmployee);
-    }
+    private void displayAllDepartments() {}
 
-    private void option2() {}
-
-    private void option3() {}
-
-    private void option4() {}
 }
+
