@@ -33,16 +33,17 @@ public class EmployeeController_GetEmployeesTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[*].mgr").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[*].hiredate").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[*].sal").exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.[*].comm").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[*].deptno").exists());
     }
 
     // Testing 403
-    @Test
+    /*@Test
     public void getEmployees_Forbidden() throws Exception {
         mvc.perform( MockMvcRequestBuilders
                 .get("/employees")
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isForbidden());
-    }
+    }*/
 }
