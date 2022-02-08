@@ -2,7 +2,6 @@ package application.models;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.hibernate.type.IntegerType;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,10 +12,10 @@ import java.util.Date;
 public class EmployeeModel {
     @Id
     @Column(name="empno", nullable = false)
-    private Integer empNo;
+    private Integer empno;
 
     @Column(name="ename", length = 10)
-    private String empName;
+    private String empname;
 
     @Column(name="job",length = 9)
     private String job;
@@ -25,7 +24,7 @@ public class EmployeeModel {
     private Integer mgr;
 
     @Column(name="hiredate")
-    private Date hireDate;
+    private Date hiredate;
 
     @Column(name="sal")
     private Double sal;
@@ -36,20 +35,20 @@ public class EmployeeModel {
     @Column(name="deptno", nullable = false)
     private Double deptno;
 
-    public Integer getEmpNo() {
-        return empNo;
+    public Integer getEmpno() {
+        return empno;
     }
 
-    public void setEmpNo(Integer empNo) {
-        this.empNo = empNo;
+    public void setEmpno(Integer empno) {
+        this.empno = empno;
     }
 
-    public String getEmpName() {
-        return empName;
+    public String getEmpname() {
+        return empname;
     }
 
-    public void setEmpName(String empName) {
-        this.empName = empName;
+    public void setEmpname(String empname) {
+        this.empname = empname;
     }
 
     public String getJob() {
@@ -68,12 +67,12 @@ public class EmployeeModel {
         this.mgr = mgr;
     }
 
-    public Date getHireDate() {
-        return hireDate;
+    public Date getHiredate() {
+        return hiredate;
     }
 
-    public void setHireDate(Date hireDate) {
-        this.hireDate = hireDate;
+    public void setHiredate(Date hiredate) {
+        this.hiredate = hiredate;
     }
 
     public double getSal() {
