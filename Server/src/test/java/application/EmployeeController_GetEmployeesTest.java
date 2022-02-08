@@ -27,11 +27,11 @@ public class EmployeeController_GetEmployeesTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.[*].empNo").exists())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.[*].empName").exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.[*].empno").exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.[*].empname").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[*].job").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[*].mgr").exists())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.[*].hireDate").exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.[*].hiredate").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[*].sal").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.[*].deptno").exists());
     }
