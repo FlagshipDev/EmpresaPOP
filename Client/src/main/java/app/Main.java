@@ -1,11 +1,11 @@
 package app;
 
-import menu.Menu;
+import menu.MainMenu;
 
 public class Main {
 
     public static void main (String[] args) {
-        Menu mainMenu = new Menu();
+        MainMenu mainMenu = new MainMenu();
         mainMenu.launch();
     }
 }

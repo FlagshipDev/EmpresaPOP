@@ -8,14 +8,14 @@ import org.json.JSONObject;
  */
 public class Employee {
 
-    private int empno;
+    private Integer empno;
     private String ename;
     private String job;
     private Integer mgr;
     private String hiredate;
-    private int sal;
+    private Integer sal;
     private Integer comm;
-    private int deptno;
+    private Integer deptno;
 
     /**
      * Default constructor to save the data from json file
