@@ -8,6 +8,7 @@ import com.googlecode.lanterna.gui2.dialogs.MessageDialogButton;
 import dtos.Employee;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 public class NewEmployeeMenu {
@@ -176,6 +177,7 @@ public class NewEmployeeMenu {
 
     private String validateTextBoxes() {
         String message = "OK";
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
         if (emptyTextBoxes()) {
             message = "Empty textboxes";
@@ -185,20 +187,25 @@ public class NewEmployeeMenu {
                         || Integer.parseInt(this.tboxComm.getText()) < 1 || Integer.parseInt(this.tboxDepno.getText()) < 1) {
                     message = "Negative numbers";
                 }
+
+                sdf.setLenient(false);
+                sdf.parse(this.tboxHiredate.getText());
             } catch (NumberFormatException nfe) {
                 message = "Numbers with letters";
-            }
+            } catch (Exception e) {
+            message = "Bad date format";
+        }
         }
         return message;
     }
 
     private boolean emptyTextBoxes() {
         for (int i = 0; i < this.textBoxes.length; i++) {
-            if (!this.textBoxes[i].getText().equals("")) {
-                return false;
+            if (this.textBoxes[i].getText().equals("")) {
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
 
