@@ -9,12 +9,12 @@ import org.json.JSONObject;
 public class Employee {
 
     private int empno;
-    private String ename;
+    private String empname;
     private String job;
     private int mgr;
     private String hiredate;
-    private int sal;
-    private Integer comm;
+    private double sal;
+    private double comm;
     private int deptno;
 
     /**
@@ -24,12 +24,14 @@ public class Employee {
      */
     public Employee(JSONObject json) {
         this.empno = json.getInt("empno");
-        this.ename = json.getString("ename");
+        this.empname = json.getString("empname");
         this.job = json.getString("job");
-        this.mgr = json.getInt("mgr");
+        if(json.has("mgr"))
+            this.mgr = json.getInt("mgr");
         this.hiredate = json.getString("hiredate");
-        this.sal = json.getInt("sal");
-        this.comm = (Integer) json.get("comm");
+        this.sal = json.getDouble("sal");
+        if(json.has("comm"))
+            this.comm = json.getDouble("comm");
         this.deptno = json.getInt("deptno");
     }
 
@@ -43,8 +45,8 @@ public class Employee {
     /**
      * @return name of employee
      */
-    public String getEname() {
-        return ename;
+    public String getEmpname() {
+        return empname;
     }
 
     /**
@@ -71,14 +73,14 @@ public class Employee {
     /**
      * @return salary of employee
      */
-    public int getSal() {
+    public double getSal() {
         return sal;
     }
 
     /**
      * @return comm of employee
      */
-    public Integer getComm() {
+    public double getComm() {
         return comm;
     }
 
