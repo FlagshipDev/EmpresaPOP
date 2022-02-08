@@ -20,7 +20,7 @@ import java.net.URL;
 public class RestClientHelper {
 
     // Parámetros por default
-    private static final String DEFAULT_URL = "http://15.188.62.79:8080/api";
+    private static final String DEFAULT_URL = "http://rest2daeva.easybyte.club/version/1";
     private static final String XAPIKEY = "TgGJrf2EdN1y4VrM79fzZoYP5Q1C89sM";
 
     // Comprobamos el estado de la URL
