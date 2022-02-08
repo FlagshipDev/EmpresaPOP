@@ -1,6 +1,7 @@
 package menu;
 
 import api.RestClient;
+import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.gui2.dialogs.MessageDialog;
 import com.googlecode.lanterna.gui2.dialogs.MessageDialogButton;
@@ -100,12 +101,23 @@ public class Menu {
         menuEmployee.setHints(Arrays.asList(Window.Hint.CENTERED));
         menuEmployee.setFixedSize(new TerminalSize(60, 25));
 
+        // Create contentPanel
+        Panel contentPanel = new Panel(new GridLayout(2));
+        GridLayout gridLayout = (GridLayout) contentPanel.getLayoutManager();
+        //gridLayout.setVerticalSpacing(1);
+
         // Create labels, textboxes and buttons for the menuEmployee
-        Label lblEmpno = new Label("Numero");
+        Label lblEmpno = new Label("Numero").setLayoutData(gridLayout.createLayoutData(
+                GridLayout.Alignment.BEGINNING, // Horizontal alignment in the grid cell if the cell is larger than the component's preferred size
+                GridLayout.Alignment.BEGINNING, // Vertical alignment in the grid cell if the cell is larger than the component's preferred size
+                true,       // Give the component extra horizontal space if available
+                false,        // Give the component extra vertical space if available
+                2,                  // Horizontal span
+                1));
         Label lblEname = new Label("Nombre");
         Label lblJob = new Label("Trabajo");
         Label lblMgr = new Label("Mgr");
-        Label lblHiredate = new Label("Fecha de contratacion");
+        Label lblHiredate = new Label("Fecha de contratacion (dd/mm/yyyy)");
         Label lblSal = new Label("Salario");
         Label lblComm = new Label("Comm");
         Label lblDepno = new Label("Nº departamento");
@@ -133,31 +145,24 @@ public class Menu {
         tboxDepno.setLayoutData(GridLayout.createHorizontallyFilledLayoutData());
 
         // Add labels, textboxes and buttons to the contentPanel
-        Panel contentPanel = new Panel(new GridLayout(2));
-        GridLayout gridLayout = (GridLayout) contentPanel.getLayoutManager();
-        gridLayout.setHorizontalSpacing(3);
-
         Label[] labels = {lblEmpno, lblEname, lblJob, lblMgr, lblHiredate, lblSal, lblComm, lblDepno};
         TextBox[] textBoxes = {tboxEmpno, tboxEname, tboxJob, tboxMgr, tboxHiredate, tboxSal, tboxComm, tboxDepno};
+
+        contentPanel.addComponent(
+                new EmptySpace()
+                        .setLayoutData(
+                                GridLayout.createHorizontallyFilledLayoutData(2)));
 
         for (int i = 0; i < labels.length; i++) {
             contentPanel.addComponent(labels[i]);
             contentPanel.addComponent(textBoxes[i]);
         }
 
-
-        // Empty space and separate line
-        /*
-        contentPanel.addComponent(
-                new EmptySpace()
-                        .setLayoutData(
-                                GridLayout.createHorizontallyFilledLayoutData(2)));
-
         contentPanel.addComponent(
                 new Separator(Direction.HORIZONTAL)
                         .setLayoutData(
                                 GridLayout.createHorizontallyFilledLayoutData(2)));
-        */
+
         contentPanel.addComponent(btnClose);
         contentPanel.addComponent(btnInsert);
 
