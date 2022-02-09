@@ -1,6 +1,5 @@
 package menu;
 
-import api.RestClient;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.gui2.*;
@@ -22,7 +21,9 @@ public class MainMenu {
     private WindowBasedTextGUI textGUI;
     private Window menuOptions;
 
-    private RestClient api = new RestClient();
+    // Menus
+    InsertEmployeeMenu insertEmployeeMenu;
+    DisplayAllEmployeesMenu displayAllEmployeesMenu;
 
     public MainMenu() {
         try {
@@ -45,15 +46,20 @@ public class MainMenu {
         }
     }
 
-    private void show() throws IOException {
+    private void show() {
+        // Create main menu
         this.menuOptions = new BasicWindow("Menu opciones");
         this.menuOptions.setHints(Arrays.asList(Window.Hint.CENTERED));
         this.menuOptions.setFixedSize(new TerminalSize(70, 10));
 
+        // Instance the submenus
+        this.insertEmployeeMenu = new InsertEmployeeMenu(textGUI, menuOptions);
+        this.displayAllEmployeesMenu = new DisplayAllEmployeesMenu(textGUI, menuOptions);
+
         // Create buttons
-        Button btnAddEmployee = new Button("Insertar empleado");
-        Button btnDeleteEmployee = new Button("Borrar empleado", () -> deleteEmployee());
-        Button btnSeeAllEmployeers = new Button("Visualizar todos los empleados", () -> displayAllEmployees());
+        Button btnAddEmployee = new Button("Insertar empleado",  () -> insertEmployeeMenu.show());
+        Button btnDeleteEmployee = new Button("Borrar empleado");
+        Button btnSeeAllEmployeers = new Button("Visualizar todos los empleados", () -> displayAllEmployeesMenu.show());
         Button btnSeeAllDepartments = new Button("Visualizar todos los departamentos", () -> displayAllDepartments());
         Button btnExit = new Button("Salir", menuOptions::close);
 
@@ -63,14 +69,6 @@ public class MainMenu {
         btnSeeAllEmployeers.setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Center));
         btnSeeAllDepartments.setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Center));
         btnExit.setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Center));
-
-        btnAddEmployee.addListener(new Button.Listener() {
-            @Override
-            public void onTriggered(Button button) {
-                NewEmployeeMenu newEmployeeMenu = new NewEmployeeMenu(textGUI, menuOptions, api);
-                newEmployeeMenu.show();
-            }
-        });
 
         // Add new buttons to my contentPanel
         Panel contentPanel = new Panel(new LinearLayout());

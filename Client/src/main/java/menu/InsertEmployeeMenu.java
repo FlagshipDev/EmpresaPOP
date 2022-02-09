@@ -11,7 +11,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
-public class NewEmployeeMenu {
+public class InsertEmployeeMenu {
 
     private WindowBasedTextGUI textGUI;
     private Window mainWindow;
@@ -41,7 +41,7 @@ public class NewEmployeeMenu {
     private Label[] labels;
     private TextBox[] textBoxes;
 
-    public NewEmployeeMenu(WindowBasedTextGUI textGUI, Window menuOptions, RestClient api) {
+    public InsertEmployeeMenu(WindowBasedTextGUI textGUI, Window menuOptions) {
         this.textGUI = textGUI;
         this.mainWindow = menuOptions;
 
@@ -49,7 +49,7 @@ public class NewEmployeeMenu {
         this.lblEmpname = new Label("Nombre");
         this.lblJob = new Label("Trabajo");
         this.lblMgr = new Label("Mgr");
-        this.lblHiredate = new Label("Fecha de contratacion\n(dd/mm/yyyy)");
+        this.lblHiredate = new Label("Fecha de contratacion\n(yyyy-MM-dd)");
         this.lblSal = new Label("Salario");
         this.lblComm = new Label("Comm");
         this.lblDepno = new Label("Nº departamento");
@@ -174,7 +174,7 @@ public class NewEmployeeMenu {
 
     private String validateTextBoxes() {
         String message = "OK";
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         if (emptyTextBoxes()) {
             message = "Empty textboxes";
