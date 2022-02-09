@@ -27,7 +27,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/employee/{id}")
-    void deleteEmployee(@PathVariable String id) {
+    void deleteEmployee(@PathVariable Integer id) {
         repository.deleteById(id);
     }
 }
