@@ -23,6 +23,8 @@ public class MainMenu {
 
     // Menus
     InsertEmployeeMenu insertEmployeeMenu;
+    DeleteEmployeeMenu deleteEmployeeMenu;
+    DisplayAllDepartmentsMenu displayAllDepartmentsMenu;
     DisplayAllEmployeesMenu displayAllEmployeesMenu;
 
     public MainMenu() {
@@ -54,13 +56,15 @@ public class MainMenu {
 
         // Instance the submenus
         this.insertEmployeeMenu = new InsertEmployeeMenu(textGUI, menuOptions);
+        this.deleteEmployeeMenu = new DeleteEmployeeMenu(textGUI, menuOptions);
+        this.displayAllDepartmentsMenu = new DisplayAllDepartmentsMenu(textGUI, menuOptions);
         this.displayAllEmployeesMenu = new DisplayAllEmployeesMenu(textGUI, menuOptions);
 
         // Create buttons
         Button btnAddEmployee = new Button("Insertar empleado",  () -> insertEmployeeMenu.show());
-        Button btnDeleteEmployee = new Button("Borrar empleado");
+        Button btnDeleteEmployee = new Button("Borrar empleado", () -> deleteEmployeeMenu.show());
         Button btnSeeAllEmployeers = new Button("Visualizar todos los empleados", () -> displayAllEmployeesMenu.show());
-        Button btnSeeAllDepartments = new Button("Visualizar todos los departamentos", () -> displayAllDepartments());
+        Button btnSeeAllDepartments = new Button("Visualizar todos los departamentos", () -> displayAllDepartmentsMenu.show());
         Button btnExit = new Button("Salir", menuOptions::close);
 
         // Align buttons to center
@@ -95,17 +99,5 @@ public class MainMenu {
             e.printStackTrace();
         }
     }
-
-
-    private void deleteEmployee() {
-    }
-
-    private void displayAllEmployees() {
-    }
-
-    private void displayAllDepartments() {
-    }
-
-
 }
 
