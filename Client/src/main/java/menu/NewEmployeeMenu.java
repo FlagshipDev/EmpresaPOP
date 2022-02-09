@@ -13,14 +13,12 @@ import java.util.Arrays;
 
 public class NewEmployeeMenu {
 
-    private RestClient api;
-
     private WindowBasedTextGUI textGUI;
     private Window mainWindow;
 
     // Create labels, textboxes and buttons for the menuEmployee
     private Label lblEmpno;
-    private Label lblEname;
+    private Label lblEmpname;
     private Label lblJob;
     private Label lblMgr;
     private Label lblHiredate;
@@ -29,7 +27,7 @@ public class NewEmployeeMenu {
     private Label lblDepno;
 
     private TextBox tboxEmpno;
-    private TextBox tboxEname;
+    private TextBox tboxEmpname;
     private TextBox tboxJob;
     private TextBox tboxMgr;
     private TextBox tboxHiredate;
@@ -44,12 +42,11 @@ public class NewEmployeeMenu {
     private TextBox[] textBoxes;
 
     public NewEmployeeMenu(WindowBasedTextGUI textGUI, Window menuOptions, RestClient api) {
-        this.api = api;
         this.textGUI = textGUI;
         this.mainWindow = menuOptions;
 
         this.lblEmpno = new Label("Numero");
-        this.lblEname = new Label("Nombre");
+        this.lblEmpname = new Label("Nombre");
         this.lblJob = new Label("Trabajo");
         this.lblMgr = new Label("Mgr");
         this.lblHiredate = new Label("Fecha de contratacion\n(dd/mm/yyyy)");
@@ -58,7 +55,7 @@ public class NewEmployeeMenu {
         this.lblDepno = new Label("Nº departamento");
 
         this.tboxEmpno = new TextBox();
-        this.tboxEname = new TextBox();
+        this.tboxEmpname = new TextBox();
         this.tboxJob = new TextBox();
         this.tboxMgr = new TextBox();
         this.tboxHiredate = new TextBox();
@@ -69,8 +66,8 @@ public class NewEmployeeMenu {
         this.btnClose = new Button("Cerrar");
         this.btnInsert = new Button("Insertar");
 
-        this.labels = new Label[]{lblEmpno, lblEname, lblJob, lblMgr, lblHiredate, lblSal, lblComm, lblDepno};
-        this.textBoxes = new TextBox[]{tboxEmpno, tboxEname, tboxJob, tboxMgr, tboxHiredate, tboxSal, tboxComm, tboxDepno};
+        this.labels = new Label[]{lblEmpno, lblEmpname, lblJob, lblMgr, lblHiredate, lblSal, lblComm, lblDepno};
+        this.textBoxes = new TextBox[]{tboxEmpno, tboxEmpname, tboxJob, tboxMgr, tboxHiredate, tboxSal, tboxComm, tboxDepno};
     }
 
     public void show() {
@@ -125,7 +122,7 @@ public class NewEmployeeMenu {
                         break;
                     case "OK":
                         Integer empno = Integer.parseInt(tboxEmpno.getText());
-                        String ename = tboxEname.getText();
+                        String empname = tboxEmpname.getText();
                         String job = tboxJob.getText();
                         Integer mgr = Integer.parseInt(tboxMgr.getText());
                         String hiredate = tboxHiredate.getText();
@@ -135,7 +132,7 @@ public class NewEmployeeMenu {
 
                         JSONObject jsonEmployee = new JSONObject();
                         jsonEmployee.put("empno", empno);
-                        jsonEmployee.put("ename", ename);
+                        jsonEmployee.put("empname", empname);
                         jsonEmployee.put("job", job);
                         jsonEmployee.put("mgr", mgr);
                         jsonEmployee.put("hiredate", hiredate);
@@ -144,7 +141,7 @@ public class NewEmployeeMenu {
                         jsonEmployee.put("deptno", deptno);
 
                         Employee newEmployee = new Employee(jsonEmployee);
-                        api.postEmployee(newEmployee);
+                        RestClient.getInstance().createNewEmployee(newEmployee);
                         break;
                 }
             }
@@ -193,8 +190,8 @@ public class NewEmployeeMenu {
             } catch (NumberFormatException nfe) {
                 message = "Numbers with letters";
             } catch (Exception e) {
-            message = "Bad date format";
-        }
+                message = "Bad date format";
+            }
         }
         return message;
     }

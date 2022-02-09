@@ -106,9 +106,7 @@ public class MainMenu {
     }
 
     private void displayAllDepartments() {
-        System.out.println(api.getDepartments().toString());
     }
-
 
 
 }
