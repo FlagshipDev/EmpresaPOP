@@ -26,7 +26,9 @@
 
 <h2 align="center"> Documentación del trabajo </h2>
 
-
+<h3> Docker </h3>
+<h4> Docker es una plataforma que empaqueta software en unidades estandarizadas llamadas contenedores que incluyen todo lo necesario para que el software se ejecute, incluidas bibliotecas, herramientas de sistema, código y tiempo de ejecución. Con Docker, puede implementar y ajustar la escala de aplicaciones rápidamente en cualquier entorno sabiendo que se va a ejecutar. </h4>
+<h4> Docker es un sistema operativo para contenedores. De manera similar a cómo una máquina virtual virtualiza el hardware del servidor, los contenedores virtualizan el sistema operativo de un servidor. Docker se instala en cada servidor y propociona comandos senciollos que puede utilizar para crear, iniciar o detener contenedores. </h4>
 
 <h2 align="center"> Referencias </h2>
 
