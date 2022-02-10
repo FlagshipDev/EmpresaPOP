@@ -1,6 +1,5 @@
 package application.controller;
 
-import application.models.DepartmentModel;
 import application.models.EmployeeModel;
 import application.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/employee/{id}")
-    void deleteEmployee(@PathVariable String id) {
+    void deleteEmployee(@PathVariable Integer id) {
         repository.deleteById(id);
     }
 }

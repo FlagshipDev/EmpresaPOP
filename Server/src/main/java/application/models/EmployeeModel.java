@@ -1,51 +1,54 @@
 package application.models;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name="emp")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class EmployeeModel {
     @Id
     @Column(name="empno", nullable = false)
-    private int empNo;
+    private Integer empno;
 
     @Column(name="ename", length = 10)
-    private String empName;
+    private String empname;
 
     @Column(name="job",length = 9)
     private String job;
 
     @Column(name="mgr")
-    private int mgr;
+    private Integer mgr;
 
     @Column(name="hiredate")
-    private Date hireDate;
+    private Date hiredate;
 
     @Column(name="sal")
-    private double sal;
+    private Double sal;
 
     @Column(name="comm")
-    private double comm;
+    private Double comm;
 
-    @Column(name="deptnp")
-    private double deptno;
+    @Column(name="deptno", nullable = false)
+    private Double deptno;
 
-    public int getEmpNo() {
-        return empNo;
+    public Integer getEmpno() {
+        return empno;
     }
 
-    public void setEmpNo(int empNo) {
-        this.empNo = empNo;
+    public void setEmpno(Integer empno) {
+        this.empno = empno;
     }
 
-    public String getEmpName() {
-        return empName;
+    public String getEmpname() {
+        return empname;
     }
 
-    public void setEmpName(String empName) {
-        this.empName = empName;
+    public void setEmpname(String empname) {
+        this.empname = empname;
     }
 
     public String getJob() {
@@ -56,35 +59,35 @@ public class EmployeeModel {
         this.job = job;
     }
 
-    public int getMgr() {
+    public Integer getMgr() {
         return mgr;
     }
 
-    public void setMgr(int mgr) {
+    public void setMgr(Integer mgr) {
         this.mgr = mgr;
     }
 
-    public Date getHireDate() {
-        return hireDate;
+    public Date getHiredate() {
+        return hiredate;
     }
 
-    public void setHireDate(Date hireDate) {
-        this.hireDate = hireDate;
+    public void setHiredate(Date hiredate) {
+        this.hiredate = hiredate;
     }
 
     public double getSal() {
         return sal;
     }
 
-    public void setSal(double sal) {
+    public void setSal(Double sal) {
         this.sal = sal;
     }
 
-    public double getComm() {
+    public Double getComm() {
         return comm;
     }
 
-    public void setComm(double comm) {
+    public void setComm(Double comm) {
         this.comm = comm;
     }
 
@@ -92,7 +95,7 @@ public class EmployeeModel {
         return deptno;
     }
 
-    public void setDeptno(double deptno) {
+    public void setDeptno(Double deptno) {
         this.deptno = deptno;
     }
 }
