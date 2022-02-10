@@ -1,4 +1,4 @@
-package menu;
+package gui;
 
 import api.RestClient;
 import com.googlecode.lanterna.TerminalSize;

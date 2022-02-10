@@ -1,9 +1,13 @@
-package menu;
+package gui.main;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.gui2.*;
 import com.googlecode.lanterna.screen.Screen;
+import gui.DeleteEmployeeMenu;
+import gui.DisplayAllDepartmentsMenu;
+import gui.DisplayAllEmployeesMenu;
+import gui.InsertEmployeeMenu;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -12,14 +16,14 @@ import java.util.Arrays;
 /**
  * Creates a text-based GUI menu using lanterna library (https://github.com/mabe02/lanterna)
  *
- * @Author aandradeb
+ * @author aandradeb
  */
-public class MainMenu {
+public class Menu {
 
     private DefaultTerminalFactory terminalFactory; // Auto-detection for figuring out which terminal create
     private Screen terminal; // Save the detected terminal implementation
     private WindowBasedTextGUI textGUI;
-    private Window menuOptions;
+    private Window mainWindow;
 
     // Menus
     InsertEmployeeMenu insertEmployeeMenu;
@@ -27,7 +31,7 @@ public class MainMenu {
     DisplayAllDepartmentsMenu displayAllDepartmentsMenu;
     DisplayAllEmployeesMenu displayAllEmployeesMenu;
 
-    public MainMenu() {
+    public Menu() {
         try {
             this.terminalFactory = new DefaultTerminalFactory()
                     .setTerminalEmulatorTitle("EmpresaPOP")
@@ -50,22 +54,22 @@ public class MainMenu {
 
     private void show() {
         // Create main menu
-        this.menuOptions = new BasicWindow("Menu opciones");
-        this.menuOptions.setHints(Arrays.asList(Window.Hint.CENTERED));
-        this.menuOptions.setFixedSize(new TerminalSize(70, 10));
+        this.mainWindow = new BasicWindow("Menu opciones");
+        this.mainWindow.setHints(Arrays.asList(Window.Hint.CENTERED));
+        this.mainWindow.setFixedSize(new TerminalSize(70, 10));
 
         // Instance the submenus
-        this.insertEmployeeMenu = new InsertEmployeeMenu(textGUI, menuOptions);
-        this.deleteEmployeeMenu = new DeleteEmployeeMenu(textGUI, menuOptions);
-        this.displayAllDepartmentsMenu = new DisplayAllDepartmentsMenu(textGUI, menuOptions);
-        this.displayAllEmployeesMenu = new DisplayAllEmployeesMenu(textGUI, menuOptions);
+        this.insertEmployeeMenu = new InsertEmployeeMenu(textGUI, mainWindow);
+        this.deleteEmployeeMenu = new DeleteEmployeeMenu(textGUI, mainWindow);
+        this.displayAllDepartmentsMenu = new DisplayAllDepartmentsMenu(textGUI, mainWindow);
+        this.displayAllEmployeesMenu = new DisplayAllEmployeesMenu(textGUI, mainWindow);
 
         // Create buttons
         Button btnAddEmployee = new Button("Insertar empleado",  () -> insertEmployeeMenu.show());
         Button btnDeleteEmployee = new Button("Borrar empleado", () -> deleteEmployeeMenu.show());
         Button btnSeeAllEmployeers = new Button("Visualizar todos los empleados", () -> displayAllEmployeesMenu.show());
         Button btnSeeAllDepartments = new Button("Visualizar todos los departamentos", () -> displayAllDepartmentsMenu.show());
-        Button btnExit = new Button("Salir", menuOptions::close);
+        Button btnExit = new Button("Salir", mainWindow::close);
 
         // Align buttons to center
         btnAddEmployee.setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Center));
@@ -86,10 +90,10 @@ public class MainMenu {
         contentPanel.addComponent(btnExit);
 
         // Add contentPanel to my window menuOptions
-        menuOptions.setComponent(contentPanel);
+        mainWindow.setComponent(contentPanel);
 
         // Add menuOptions to my textGUI
-        textGUI.addWindowAndWait(this.menuOptions);
+        textGUI.addWindowAndWait(this.mainWindow);
 
         try {
             if (terminal != null) {

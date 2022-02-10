@@ -1,4 +1,4 @@
-package menu;
+package gui;
 
 import api.RestClient;
 import com.googlecode.lanterna.TerminalSize;
@@ -6,7 +6,6 @@ import com.googlecode.lanterna.gui2.*;
 import com.googlecode.lanterna.gui2.table.Table;
 import com.googlecode.lanterna.gui2.table.TableModel;
 import dtos.Department;
-import dtos.Employee;
 
 import java.util.ArrayList;
 import java.util.Arrays;
