@@ -63,7 +63,7 @@ paths:
           content: 
             application/json:
               schema:
-                $ref: '##/components/schemas/#/components/schemas/Department'
+                $ref: '##/components/schemas/#/components/schemas/Department.java'
               example:
                 - deptno: 10
                   dname: RESEARCH
@@ -172,4 +172,4 @@ components:
         loc:
           type: string
       xml:
-        name: Department
+        name: Department.java
