@@ -23,6 +23,7 @@ public class EmployeeController {
 
     @PostMapping("/employee")
     EmployeeModel newEmployee(@RequestBody EmployeeModel newEmployee) {
+        System.out.println("posteado nuevo usuario");
         return repository.save(newEmployee);
     }
 
