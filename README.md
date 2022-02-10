@@ -25,3 +25,16 @@
 <h4> 5. Redactar un documento donde se explique el proceso seguido para la realización de la practica. </h4>
 
 <h2 align="center"> Documentación del trabajo </h2>
+
+
+
+<h2 align="center"> Referencias </h2>
+
+<h4 align="center"> Docker </h4>
+<h4 align="center"> https://aws.amazon.com/es/docker/ </h4>
+<h4 align="center"> Spring </h4>
+<h4 align="center"> ... </h4>
+<h4 align="center"> Lanterna </h4>
+<h4 align="center"> https://github.com/mabe02/lanterna </h4>
+<h4 align="center"> CI/CD </h4>
+<h4 align="center"> ... </h4>
