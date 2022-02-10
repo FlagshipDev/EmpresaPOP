@@ -31,7 +31,7 @@
 <h4> Docker es un sistema operativo para contenedores. De manera similar a cómo una máquina virtual virtualiza el hardware del servidor, los contenedores virtualizan el sistema operativo de un servidor. Docker se instala en cada servidor y propociona comandos senciollos que puede utilizar para crear, iniciar o detener contenedores. </h4>
 
 <h3> Spring </h3>
-<h4> ... </h4>
+<h4> Spring Data REST es un proyecto que está dentro del paraguas del proyecto Spring Data, que es más general, que nos va a facilitar la creación de la API REST de servicios web REST basados en hipermedios, y lo hace construyéndolos sobre repositorios de Spring Data. Se basa en dichos repositorios, analiza el modelo de dominio que tengamos definido en nuestras entidades y expone estos recursos HTTP controlados por hipermedia, es decir, bajo la arquitectura HATEOAS. </h4>
 
 <h3> Lanterna </h3>
 <h4> Lanterna es una biblioteca de Java que le permite escribir interfaces de usuario semigráficas fáciles en un entorno de solo texto, muy similar a las maldiciones de la biblioteca C pero con más funcionalidad. Lanterna admite terminales compatibles con xterm y emuladores de terminales como konsole, gnome-terminal, putty, xterm y muchos más. Uno de los principales beneficios de Lanterna es que no depende de ninguna biblioteca nativa, sino que se ejecuta 100% en Java puro. </h4>
@@ -46,7 +46,7 @@
 <h4 align="center"> Docker </h4>
 <h4 align="center"> https://aws.amazon.com/es/docker/ </h4>
 <h4 align="center"> Spring </h4>
-<h4 align="center"> ... </h4>
+<h4 align="center"> https://openwebinars.net/blog/hola-mundo-con-spring-data-rest/ </h4>
 <h4 align="center"> Lanterna </h4>
 <h4 align="center"> https://github.com/mabe02/lanterna </h4>
 <h4 align="center"> CI/CD </h4>
