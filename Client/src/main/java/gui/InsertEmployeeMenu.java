@@ -150,6 +150,7 @@ public class InsertEmployeeMenu {
 
                         Employee newEmployee = new Employee(jsonEmployee);
                         RestClient.getInstance().createNewEmployee(newEmployee);
+
                         tboxEmpno.setText("");
                         tboxEmpname.setText("");
                         tboxJob.setText("");

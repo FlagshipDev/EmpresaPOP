@@ -48,6 +48,7 @@ public class Menu {
     public void show() {
         try {
             terminal.startScreen();
+
             // Create main window
             this.mainWindow = new BasicWindow("Menu opciones");
             this.mainWindow.setHints(Arrays.asList(Window.Hint.CENTERED));

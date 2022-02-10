@@ -94,6 +94,7 @@ public class DisplayAllEmployeesMenu {
                         String.valueOf(employee.getSal()),
                         String.valueOf(employee.getComm()),
                         String.valueOf(employee.getDeptno())));
+
     }
 
     /**
