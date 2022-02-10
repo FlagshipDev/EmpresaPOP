@@ -11,7 +11,7 @@ public class Employee {
     private int empno;
     private String empname;
     private String job;
-    private int mgr;
+    private Integer mgr;
     private String hiredate;
     private double sal;
     private double comm;
