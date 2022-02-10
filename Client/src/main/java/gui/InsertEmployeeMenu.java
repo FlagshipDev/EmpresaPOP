@@ -150,6 +150,17 @@ public class InsertEmployeeMenu {
 
                         Employee newEmployee = new Employee(jsonEmployee);
                         RestClient.getInstance().createNewEmployee(newEmployee);
+                        tboxEmpno.setText("");
+                        tboxEmpname.setText("");
+                        tboxJob.setText("");
+                        tboxMgr.setText("");
+                        tboxHiredate.setText("");
+                        tboxSal.setText("");
+                        tboxComm.setText("");
+                        tboxDepno.setText("");
+                        MessageDialog.showMessageDialog(textGUI, "Confirmacion", "Usuario insertado con exito!", MessageDialogButton.OK);
+                        mainWindow.setVisible(true);
+                        menuEmployees.close();
                         break;
                 }
             }
@@ -194,8 +205,8 @@ public class InsertEmployeeMenu {
             message = "Empty textboxes";
         } else {
             try {
-                if (Integer.parseInt(this.tboxEmpno.getText()) < 1 || Integer.parseInt(this.tboxMgr.getText()) < 1 || Integer.parseInt(this.tboxSal.getText()) < 1
-                        || Integer.parseInt(this.tboxComm.getText()) < 1 || Integer.parseInt(this.tboxDepno.getText()) < 1) {
+                if (Integer.parseInt(this.tboxEmpno.getText()) < 0 || Integer.parseInt(this.tboxMgr.getText()) < 0 || Integer.parseInt(this.tboxSal.getText()) < 0
+                        || Integer.parseInt(this.tboxComm.getText()) < 0 || Integer.parseInt(this.tboxDepno.getText()) < 0) {
                     message = "Negative numbers";
                 }
 
