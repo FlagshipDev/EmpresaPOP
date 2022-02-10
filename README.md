@@ -50,4 +50,4 @@
 <h4 align="center"> Lanterna </h4>
 <h4 align="center"> https://github.com/mabe02/lanterna </h4>
 <h4 align="center"> CI/CD </h4>
-<h4 align="center"> ... </h4>
+<h4 align="center"> https://www.redhat.com/es/topics/devops/what-is-ci-cd </h4>
