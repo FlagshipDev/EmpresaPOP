@@ -28,10 +28,14 @@ public class Employee {
         this.job = json.getString("job");
         if(json.has("mgr"))
             this.mgr = json.getInt("mgr");
+        else
+            this.mgr = 0;
         this.hiredate = json.getString("hiredate");
         this.sal = json.getDouble("sal");
         if(json.has("comm"))
             this.comm = json.getDouble("comm");
+        else
+            this.comm = 0;
         this.deptno = json.getInt("deptno");
     }
 

@@ -15,7 +15,7 @@ public class DisplayAllEmployeesMenu {
     private WindowBasedTextGUI textGUI;
     private Window mainWindow;
 
-    private Table<String> table;
+    private static Table<String> table;
     private Button exit;
 
     /**
@@ -51,7 +51,7 @@ public class DisplayAllEmployeesMenu {
         table.setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Beginning, LinearLayout.GrowPolicy.CanGrow));
 
         // Add the data saved from the request in the table
-        addDataToTable();
+        updateDataToTable();
 
         // Center the button
         exit.setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Center));
@@ -82,25 +82,18 @@ public class DisplayAllEmployeesMenu {
     /**
      * Add data from the request to the table
      */
-    private void addDataToTable() {
+    private static void updateDataToTable() {
+        table.getTableModel().clear();
         ArrayList<Employee> employees = RestClient.getInstance().getAllEmployees();
-
-        try {
-            for (int i = 0; i < employees.size(); i++) {
-                String empno = String.valueOf(employees.get(i).getEmpno());
-                String empname = employees.get(i).getEmpname();
-                String job = employees.get(i).getJob();
-                String mgr = String.valueOf(employees.get(i).getMgr());
-                String hiredate = formatDate(employees.get(i).getHiredate());
-                String sal = String.valueOf(employees.get(i).getSal());
-                String comm = String.valueOf(employees.get(i).getComm());
-                String deptno = String.valueOf(employees.get(i).getDeptno());
-
-                table.getTableModel().addRow(empno, empname, job, mgr, hiredate, sal, comm, deptno);
-            }
-
-        } catch (NullPointerException npe) {
-        }
+        employees.forEach(employee ->
+                table.getTableModel().addRow(String.valueOf(employee.getEmpno()),
+                        employee.getEmpname(),
+                        employee.getJob(),
+                        String.valueOf(employee.getMgr()),
+                        formatDate(employee.getHiredate()),
+                        String.valueOf(employee.getSal()),
+                        String.valueOf(employee.getComm()),
+                        String.valueOf(employee.getDeptno())));
     }
 
     /**
@@ -116,7 +109,7 @@ public class DisplayAllEmployeesMenu {
      * @param date Data passed
      * @return New date in good format (yyyy-mm-dd)
      */
-    private String formatDate(String date) {
+    private static String formatDate(String date) {
         return date.substring(0, 10);
     }
 
