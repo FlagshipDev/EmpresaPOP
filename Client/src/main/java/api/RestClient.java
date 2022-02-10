@@ -131,7 +131,7 @@ public class RestClient {
             request.setEntity(params);
             HttpResponse httpResp = httpClient.execute(request);
             int code = httpResp.getStatusLine().getStatusCode();
-            if(code!=201) {
+            if(code!=200) {
                 throw new RuntimeException("Failed POST request - HTTP error code: " + code);
             }
         } catch (Exception ex) {
