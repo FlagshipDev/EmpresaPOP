@@ -66,6 +66,7 @@ public class DeleteEmployeeMenu {
             public void run() {
                 List<String> data = table.getTableModel().getRow(table.getSelectedRow());
                 int employeeId = Integer.parseInt(data.get(0));
+                // TODO: Make a window or popup window to to user to choose cancel or accept when deleting a employee.
 
                 //MessageDialog.showMessageDialog(textGUI, "Confirmacion", "Seguro/a que quieres borrar ese empleado");
 
