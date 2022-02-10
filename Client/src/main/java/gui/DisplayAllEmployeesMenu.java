@@ -18,6 +18,12 @@ public class DisplayAllEmployeesMenu {
     private Table<String> table;
     private Button exit;
 
+    /**
+     * Default constructor
+     *
+     * @param textGUI Basic gui
+     * @param mainWindow Root window
+     */
     public DisplayAllEmployeesMenu(WindowBasedTextGUI textGUI, Window mainWindow) {
         this.textGUI = textGUI;
         this.mainWindow = mainWindow;
@@ -26,6 +32,9 @@ public class DisplayAllEmployeesMenu {
         this.exit = new Button("Atras");
     }
 
+    /**
+     * Show the menu display all employees
+     */
     public void show() {
         // Hide menuOptions window
         this.mainWindow.setVisible(false);
@@ -70,6 +79,9 @@ public class DisplayAllEmployeesMenu {
         textGUI.addWindowAndWait(windowAllEmployees);
     }
 
+    /**
+     * Add data from the request to the table
+     */
     private void addDataToTable() {
         ArrayList<Employee> employees = RestClient.getInstance().getAllEmployees();
 
@@ -91,10 +103,19 @@ public class DisplayAllEmployeesMenu {
         }
     }
 
+    /**
+     * Remove the actual data in the table
+     */
     private void removeDataTable() {
         table.setTableModel(new TableModel<>("  Empno  ", "  Empname  ", "  Job  ", "  Mgr  ", "  Hirerdate  ", "  Sal  ", "  Comm  ", "  Deptno  "));
     }
 
+    /**
+     * Format date
+     *
+     * @param date Data passed
+     * @return New date in good format (yyyy-mm-dd)
+     */
     private String formatDate(String date) {
         return date.substring(0, 10);
     }

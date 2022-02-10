@@ -16,7 +16,6 @@ public class InsertEmployeeMenu {
     private WindowBasedTextGUI textGUI;
     private Window mainWindow;
 
-    // Create labels, textboxes and buttons for the menuEmployee
     private Label lblEmpno;
     private Label lblEmpname;
     private Label lblJob;
@@ -41,6 +40,12 @@ public class InsertEmployeeMenu {
     private Label[] labels;
     private TextBox[] textBoxes;
 
+    /**
+     * Default constructor
+     *
+     * @param textGUI Basic gui
+     * @param menuOptions Root window
+     */
     public InsertEmployeeMenu(WindowBasedTextGUI textGUI, Window menuOptions) {
         this.textGUI = textGUI;
         this.mainWindow = menuOptions;
@@ -70,6 +75,9 @@ public class InsertEmployeeMenu {
         this.textBoxes = new TextBox[]{tboxEmpno, tboxEmpname, tboxJob, tboxMgr, tboxHiredate, tboxSal, tboxComm, tboxDepno};
     }
 
+    /**
+     * Show the menu insert employee
+     */
     public void show() {
         // Hide menuOptions window
         this.mainWindow.setVisible(false);
@@ -172,6 +180,12 @@ public class InsertEmployeeMenu {
         textGUI.addWindowAndWait(menuEmployees);
     }
 
+
+    /**
+     * Validate the inputs when the user uses the button insert
+     *
+     * @return message For the user using the inputs
+     */
     private String validateTextBoxes() {
         String message = "OK";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -196,6 +210,9 @@ public class InsertEmployeeMenu {
         return message;
     }
 
+    /**
+     * @return true if almost one input is empty, otherwise false
+     */
     private boolean emptyTextBoxes() {
         for (int i = 0; i < this.textBoxes.length; i++) {
             if (this.textBoxes[i].getText().equals("")) {

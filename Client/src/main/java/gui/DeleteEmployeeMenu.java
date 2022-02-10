@@ -21,6 +21,12 @@ public class DeleteEmployeeMenu {
     private Table<String> table;
     private Button exit;
 
+    /**
+     * Default constructor
+     *
+     * @param textGUI Basic gui
+     * @param mainWindow Root window
+     */
     public DeleteEmployeeMenu(WindowBasedTextGUI textGUI, Window mainWindow) {
         this.textGUI = textGUI;
         this.mainWindow = mainWindow;
@@ -29,6 +35,9 @@ public class DeleteEmployeeMenu {
         this.exit = new Button("Atras");
     }
 
+    /**
+     * Show the menu delete employee
+     */
     public void show() {
         // Hide menuOptions window
         this.mainWindow.setVisible(false);
@@ -66,15 +75,46 @@ public class DeleteEmployeeMenu {
             public void run() {
                 List<String> data = table.getTableModel().getRow(table.getSelectedRow());
                 int employeeId = Integer.parseInt(data.get(0));
-                // TODO: Make a window or popup window to to user to choose cancel or accept when deleting a employee.
 
-                //MessageDialog.showMessageDialog(textGUI, "Confirmacion", "Seguro/a que quieres borrar ese empleado");
+                BasicWindow bw = new BasicWindow("Confirmacion");
+                bw.setHints(Arrays.asList(Window.Hint.CENTERED));
+                bw.setFixedSize(new TerminalSize(35, 10));
 
-                RestClient.getInstance().deleteEmployeeById(employeeId);
+                Panel panel = new Panel(new LinearLayout(Direction.VERTICAL));
+                Panel panel2 = new Panel(new LinearLayout(Direction.HORIZONTAL));
+                Panel panel3 = new Panel(new LinearLayout(Direction.HORIZONTAL));
 
-                MessageDialog.showMessageDialog(textGUI, "Confirmacion", "Usuario borrado con exito!", MessageDialogButton.OK);
-                removeDataTable();
-                addDataToTable();
+                panel2.setLayoutData(LinearLayout.createLayoutData(LinearLayout.Alignment.Center, LinearLayout.GrowPolicy.CanGrow));
+                panel3.setPreferredSize(new TerminalSize(35, 2));
+
+                Label question = new Label("\nSeguro/a que quieres borrar\nese empleado?");
+                Button btnCancel = new Button("Cancelar", () -> bw.close());
+                Button btnAccept = new Button("Aceptar");
+
+                btnAccept.addListener(new Button.Listener() {
+                    @Override
+                    public void onTriggered(Button button) {
+                        bw.close();
+                        RestClient.getInstance().deleteEmployeeById(employeeId);
+                        MessageDialog.showMessageDialog(textGUI, "Confirmacion", "Usuario borrado con exito!", MessageDialogButton.OK);
+                        removeDataTable();
+                        addDataToTable();
+                    }
+                });
+
+                panel2.addComponent(question);
+
+                for (int i = 0; i < 3; i++) { panel3.addComponent(new EmptySpace()); }
+                panel3.addComponent(btnCancel);
+                panel3.addComponent(btnCancel);
+                panel3.addComponent(new EmptySpace());
+                panel3.addComponent(btnAccept);
+
+                panel.addComponent(panel2);
+                panel.addComponent(panel3);
+
+                bw.setComponent(panel);
+                textGUI.addWindowAndWait(bw);
             }
         });
 
@@ -91,6 +131,9 @@ public class DeleteEmployeeMenu {
         textGUI.addWindowAndWait(windowAllEmployees);
     }
 
+    /**
+     * Add data from the request to the table
+     */
     private void addDataToTable() {
         ArrayList<Employee> employees = RestClient.getInstance().getAllEmployees();
 
@@ -111,15 +154,20 @@ public class DeleteEmployeeMenu {
         }
     }
 
+    /**
+     * Remove the actual data in the table
+     */
     private void removeDataTable() {
         table.setTableModel(new TableModel<>("  Empno  ", "  Empname  ", "  Job  ", "  Mgr  ", "  Hirerdate  ", "  Sal  ", "  Comm  ", "  Deptno  "));
     }
 
+    /**
+     * Format date
+     *
+     * @param date Data passed
+     * @return New date in good format (yyyy-mm-dd)
+     */
     private String formatDate(String date) {
         return date.substring(0, 10);
-    }
-
-    private void test() {
-        System.out.println("Funciona!");
     }
 }

@@ -18,6 +18,13 @@ public class DisplayAllDepartmentsMenu {
     private Table<String> table;
     private Button exit;
 
+
+    /**
+     * Default constructor
+     *
+     * @param textGUI Basic gui
+     * @param mainWindow Root window
+     */
     public DisplayAllDepartmentsMenu(WindowBasedTextGUI textGUI, Window mainWindow) {
         this.textGUI = textGUI;
         this.mainWindow = mainWindow;
@@ -26,6 +33,9 @@ public class DisplayAllDepartmentsMenu {
         this.exit = new Button("Atras");
     }
 
+    /**
+     * Show the menu display all departments
+     */
     public void show() {
         // Hide menuOptions window
         this.mainWindow.setVisible(false);
@@ -70,6 +80,9 @@ public class DisplayAllDepartmentsMenu {
         textGUI.addWindowAndWait(windowAllDepartments);
     }
 
+    /**
+     * Add data from the request to the table
+     */
     private void addDataToTable() {
         ArrayList<Department> departments = RestClient.getInstance().getAllDepartments();
 
@@ -85,12 +98,11 @@ public class DisplayAllDepartmentsMenu {
         }
     }
 
+    /**
+     * Remove the actual data in the table
+     */
     private void removeDataTable() {
         table.setTableModel(new TableModel<>("  Deptno  ", "  Dname  ", "  Loc  "));
-    }
-
-    private String formatDate(String date) {
-        return date.substring(0, 10);
     }
 
 }
