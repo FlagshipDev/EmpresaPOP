@@ -1,4 +1,4 @@
-name: CI/CD API EmpresaPOP
+name: CI/CD Server EmpresaPOP
 
 on:
   push:
