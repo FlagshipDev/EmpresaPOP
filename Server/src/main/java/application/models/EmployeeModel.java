@@ -14,10 +14,10 @@ public class EmployeeModel {
     @Column(name="empno", nullable = false)
     private Integer empno;
 
-    @Column(name="ename", length = 10)
+    @Column(name="ename")
     private String empname;
 
-    @Column(name="job",length = 9)
+    @Column(name="job")
     private String job;
 
     @Column(name="mgr")

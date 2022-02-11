@@ -58,7 +58,7 @@ public class EmployeeController_DeleteEmployeeTest {
                         .header("AUTH_EMPRESAPOP", AppTest.AUTH_TOKEN)
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().is(400));
+                .andExpect(status().is(404));
     }
 
 
