@@ -2,7 +2,7 @@ package application.exception;
 
 public class EmployeeNotFoundException extends RuntimeException {
 
-    EmployeeNotFoundException(String emnpNo) {
-        super("EmpresaPOP API - Could not find department " + emnpNo);
+    public EmployeeNotFoundException(Integer emnpNo) {
+        super("EmpresaPOP API - Could not find employee " + emnpNo);
     }
 }
