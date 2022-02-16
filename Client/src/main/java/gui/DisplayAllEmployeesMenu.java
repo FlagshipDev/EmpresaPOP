@@ -42,7 +42,7 @@ public class DisplayAllEmployeesMenu {
         // Create new window
         BasicWindow windowAllEmployees = new BasicWindow("Mostrar todos los empleados");
         windowAllEmployees.setHints(Arrays.asList(Window.Hint.CENTERED));
-        windowAllEmployees.setFixedSize(new TerminalSize(80, 30));
+        windowAllEmployees.setFixedSize(new TerminalSize(81, 30));
 
         // Create contentPanel so store the table and button
         Panel contentPanel = new Panel(new LinearLayout());
